@@ -1,29 +1,45 @@
 <template>
   <div class="home">
     <h1>Home Page</h1>
-    <p class="blue white--text">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, iste
-      excepturi maxime adipisci fugiat quo recusandae ipsam voluptas magni nulla
-      reiciendis unde eius praesentium aliquid tenetur asperiores quam sapiente!
-      Quos!
-    </p>
-    <p class="blue lighten-4 red--text text--darken-4">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, iste
-      excepturi maxime adipisci fugiat quo recusandae ipsam voluptas magni nulla
-      reiciendis unde eius praesentium aliquid tenetur asperiores quam sapiente!
-      Quos!
-    </p>
-    <h1 class="display-4">Massive Display</h1>
-    <h4 class="display-1 text-uppercase">Massive Display</h4>
-    <p class="headline font-weight-bold">This is a headline</p>
-    <p class="subheading">this is a subheading</p>
-    <p class="caption">this is a caption</p>
+
+    <v-btn class="pink white--text">click me</v-btn>
+    <v-btn depressed dark color="pink">click me</v-btn>
+    <v-btn text color="pink">click me</v-btn>
+    <v-btn color="green white--text">
+      <v-icon left>mdi-whatsapp</v-icon>
+      <span>Enviar Mensagem</span>
+    </v-btn>
+
+    <v-btn depressed color="green white--text">
+      <v-icon left small>mdi-whatsapp</v-icon>
+      <span>Enviar Mensagem</span>
+    </v-btn>
+
+    <v-btn depressed large color="green white--text">
+      <v-icon left large>mdi-whatsapp</v-icon>
+      <span>Enviar Mensagem</span>
+    </v-btn>
+
+    <v-btn fab depressed small dark :color="colorB" @click="changeColor()">
+      <v-icon>mdi-star</v-icon>
+    </v-btn>
   </div>
 </template>
 
 <script>
 export default {
   name: "Home",
+  data() {
+    return {
+      colorB: "grey white--text",
+      corText: "",
+    };
+  },
+  methods: {
+    changeColor() {
+      this.colorB = "purple yellow--text";
+    },
+  },
   components: {},
 };
 </script>
