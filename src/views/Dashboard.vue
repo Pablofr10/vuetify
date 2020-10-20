@@ -5,14 +5,7 @@
       <v-row class="mb-3">
         <v-tooltip top>
           <template #activator="{ on }">
-            <v-btn
-              small
-              text
-              color="grey"
-              @click="sortBy('title')"
-              v-bind="attrs"
-              v-on="on"
-            >
+            <v-btn small text color="grey" @click="sortBy('title')" v-on="on">
               <v-icon left small>mdi-folder</v-icon>
               <span class="caption text-lowercase">By project name</span>
             </v-btn>
