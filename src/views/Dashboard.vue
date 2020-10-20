@@ -2,25 +2,58 @@
   <div class="dashboard">
     <h1 class="subtitle-1 grey--text">Dashboard</h1>
     <v-container class="my-5">
-      <v-card elevation="2" outlined class="pa-3">
-        <v-row>
+      <v-row class="mb-3">
+        <v-tooltip top>
+          <template #activator="{ on }">
+            <v-btn
+              small
+              text
+              color="grey"
+              @click="sortBy('title')"
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon left small>mdi-folder</v-icon>
+              <span class="caption text-lowercase">By project name</span>
+            </v-btn>
+          </template>
+          <span>Project Name</span>
+        </v-tooltip>
+        <v-tooltip top>
+          <template #activator="{ on }">
+            <v-btn small text color="grey" @click="sortBy('person')" v-on="on">
+              <v-icon left small>mdi-account</v-icon>
+              <span class="caption text-lowercase">By person</span>
+            </v-btn>
+          </template>
+          <span>By Person</span>
+        </v-tooltip>
+      </v-row>
+      <v-card flat v-for="(project, index) in projects" :key="index">
+        <v-row :class="`pa-3 project ${project.status}`">
           <v-col md="6" xs="12" cols="12">
             <div class="caption grey--text">Project Title</div>
-            <div>Create a new website</div>
+            <div>{{ project.title }}</div>
           </v-col>
           <v-col xs="12" sm="4" md="2" cols="12">
             <div class="caption grey--text">Person</div>
-            <div>The Net Ninja</div>
+            <div>{{ project.person }}</div>
           </v-col>
           <v-col xs="6" sm="4" md="2" cols="12">
             <div class="caption grey--text">Due by</div>
-            <div>1st Jan 2019</div>
+            <div>{{ project.due }}</div>
           </v-col>
           <v-col xs="6" sm="4" md="2" cols="12">
-            <div class="caption grey--text">Status</div>
-            <div>ongoing</div>
+            <div class="text-right">
+              <v-chip
+                small
+                :class="`${project.status} white--text caption my-2`"
+                >{{ project.status }}</v-chip
+              >
+            </div>
           </v-col>
         </v-row>
+        <v-divider></v-divider>
       </v-card>
     </v-container>
   </div>
@@ -29,5 +62,69 @@
 <script>
 export default {
   name: "Dashboard",
+  data() {
+    return {
+      projects: [
+        {
+          title: "Design a new website",
+          person: "The Net Ninja",
+          due: "1st Jan 2019",
+          status: "ongoing",
+          content:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!",
+        },
+        {
+          title: "Code up the homepage",
+          person: "Chun Li",
+          due: "10th Jan 2019",
+          status: "complete",
+          content:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!",
+        },
+        {
+          title: "Design video thumbnails",
+          person: "Ryu",
+          due: "20th Dec 2018",
+          status: "complete",
+          content:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!",
+        },
+        {
+          title: "Create a community forum",
+          person: "Gouken",
+          due: "20th Oct 2018",
+          status: "overdue",
+          content:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!",
+        },
+      ],
+    };
+  },
+  methods: {
+    sortBy(val) {
+      this.projects.sort((a, b) => (a[val] < b[val] ? -1 : 1));
+    },
+  },
 };
 </script>
+
+<style scoped>
+.project.complete {
+  border-left: 4px solid #3cd1c2;
+}
+.project.ongoing {
+  border-left: 4px solid orange;
+}
+.project.overdue {
+  border-left: 4px solid tomato;
+}
+.v-chip.complete {
+  background: #3cd1c2 !important;
+}
+.v-chip.ongoing {
+  background: #fed330 !important;
+}
+.v-chip.overdue {
+  background: #fc5c65 !important;
+}
+</style>
