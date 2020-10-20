@@ -20,7 +20,7 @@ export default {
     //
   }),
   created() {
-    document.title = "Home";
+    document.title = "Dashboard";
   },
 };
 </script>
