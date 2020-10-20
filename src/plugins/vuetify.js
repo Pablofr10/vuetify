@@ -4,15 +4,18 @@ import { colors } from 'vuetify/lib';
 
 Vue.use(Vuetify);
 
-const vuetify = new Vuetify({
+export default new Vuetify({
   theme: {
     themes: {
+      light: {
+        primary: colors.purple,
+        secondary: colors.grey.darken1,
+        accent: colors.shades.black,
+        error: colors.red.accent3,
+      },
       dark: {
-        primary: colors.yellow,
-        background: colors.yellow,
+        primary: colors.blue.lighten3,
       },
     },
   },
 });
-
-export default vuetify;
