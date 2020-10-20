@@ -15,7 +15,7 @@
     </v-app-bar>
 
     <v-navigation-drawer app temporary class="primary" v-model="drawer">
-      <v-list>
+      <v-list class="pt-10">
         <v-list-item
           v-for="link in links"
           :key="link.icon"

@@ -16,7 +16,7 @@ const routes = [
   {
     path: '/projects',
     name: 'projects',
-    component: lazyLoad('Project'),
+    component: lazyLoad('Projects'),
   },
   {
     path: '/team',
