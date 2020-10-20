@@ -7,12 +7,12 @@
           {{ project.title }}
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          <v-card-flat>
+          <v-card-text>
             <v-card-text class="px-4 py-0 grey--text">
               <div class="font-weight-bold">due by {{ project.due }}</div>
               <div>{{ project.content }}</div>
             </v-card-text>
-          </v-card-flat>
+          </v-card-text>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
