@@ -15,7 +15,15 @@
     </v-app-bar>
 
     <v-navigation-drawer app temporary class="primary" v-model="drawer">
-      <v-list class="pt-10">
+      <v-row justify="center">
+        <v-col cols="6" class="mt-5">
+          <v-avatar size="100">
+            <img src="/img/avatar-1.png" />
+          </v-avatar>
+          <p class="white--text subheading mt-1">Pablo Araújo</p>
+        </v-col>
+      </v-row>
+      <v-list>
         <v-list-item
           v-for="link in links"
           :key="link.icon"
