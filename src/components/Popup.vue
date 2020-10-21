@@ -21,6 +21,35 @@
                   v-model="project.content"
                   prepend-icon="mdi-information-outline"
                 ></v-textarea>
+                <v-menu
+                  ref="menu"
+                  v-model="menu"
+                  :close-on-content-click="false"
+                  :return-value.sync="project.date"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template #activator="{ on, attrs }">
+                    <v-text-field
+                      v-bind="attrs"
+                      v-on="on"
+                      v-model="project.date"
+                      label="Data"
+                      prepend-icon="mdi-calendar"
+                    >
+                    </v-text-field>
+                  </template>
+                  <v-date-picker v-model="project.date" no-title scrollable>
+                    <v-spacer></v-spacer>
+                    <v-btn text color="primary" @click="menu = false">
+                      Cancel
+                    </v-btn>
+                    <v-btn text color="primary" @click="$refs.menu.save(date)">
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
                 <v-btn text class="success mx-0 mt-3" @click="submitInfo()"
                   >Add Project</v-btn
                 >
@@ -42,7 +71,12 @@ export default {
       project: {
         title: "",
         content: "",
+        date: "",
       },
+      date: new Date().toISOString().substr(0, 10),
+      menu: false,
+      modal: false,
+      menu2: false,
     };
   },
   methods: {
