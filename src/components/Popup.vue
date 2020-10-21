@@ -40,7 +40,13 @@
                     >
                     </v-text-field>
                   </template>
-                  <v-date-picker v-model="project.date" no-title scrollable>
+                  <v-date-picker
+                    v-model="project.date"
+                    elevation="10"
+                    no-title
+                    scrollable
+                    locale="pt-br"
+                  >
                     <v-spacer></v-spacer>
                     <v-btn text color="primary" @click="menu = false">
                       Cancel
@@ -73,7 +79,7 @@ export default {
         content: "",
         date: "",
       },
-      date: new Date().toISOString().substr(0, 10),
+      date: "",
       menu: false,
       modal: false,
       menu2: false,
@@ -83,6 +89,10 @@ export default {
     submitInfo() {
       console.log(this.project);
       this.dialog = false;
+    },
+    formatData() {
+      const [ano, mes, dia] = this.project.data.split("-");
+      return `${dia}/${mes}/${ano}`;
     },
   },
 };
