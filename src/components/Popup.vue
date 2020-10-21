@@ -7,12 +7,13 @@
       <v-card-title class="headline grey lighten-2">
         <h2>Add a New Project</h2>
         <v-card-text>
-          <v-form>
+          <v-form class="px-3" ref="form">
             <v-row>
               <v-col cols="12">
                 <v-text-field
                   label="Nome"
                   v-model="project.title"
+                  :rules="titleRules"
                   prepend-icon="mdi-cursor-text"
                 >
                 </v-text-field>
@@ -83,12 +84,18 @@ export default {
       menu: false,
       modal: false,
       menu2: false,
+      titleRules: [
+        (v) => !!v || "Título é obrigatório",
+        (v) => v.length <= 10 || "O Nome deve ter menos 10 caracteres",
+      ],
     };
   },
   methods: {
     submitInfo() {
-      console.log(this.project);
-      this.dialog = false;
+      if (this.$refs.form.validate()) {
+        console.log(this.project);
+        this.dialog = false;
+      }
     },
     formatData() {
       const [ano, mes, dia] = this.project.data.split("-");
