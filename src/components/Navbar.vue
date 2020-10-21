@@ -12,8 +12,8 @@
       <!-- DropDown Menu -->
 
       <v-menu offset-y>
-        <template #activator="{ on, attr }">
-          <v-btn text color="primary" v-bind="attr" v-on="on">
+        <template #activator="{ on, attrs }">
+          <v-btn text color="primary" v-bind="attrs" v-on="on">
             <span>Menu</span>
             <v-icon right>mdi-chevron-down</v-icon>
           </v-btn>
@@ -44,6 +44,9 @@
           </v-avatar>
           <p class="white--text subheading mt-1">Pablo Araújo</p>
         </v-col>
+        <v-col class="text-center mt-4">
+          <Popup />
+        </v-col>
       </v-row>
       <v-list>
         <v-list-item
@@ -67,7 +70,11 @@
 </template>
 
 <script>
+import Popup from "@/components/Popup.vue";
 export default {
+  components: {
+    Popup,
+  },
   data() {
     return {
       drawer: false,
